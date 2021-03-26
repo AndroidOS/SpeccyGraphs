@@ -12,7 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 
 private const val TAG = "Canvas"
 
-class LifeCanvas(context: Context) : View(context) {
+class ScreenCanvas(context: Context) : View(context) {
 
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap

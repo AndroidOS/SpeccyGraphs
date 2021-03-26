@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+
 class FirstFragment : Fragment() {
 
     override fun onCreateView(
@@ -24,8 +21,9 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
+        var view = activity?.let { ScreenCanvas(it.applicationContext) }
+        var frame = view?.findViewById<FrameLayout>(R.id.frameFirst)
+
+        frame?.addView(view)
     }
 }
