@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 
 class FirstFragment : Fragment() {
 
+    lateinit var frame: FrameLayout
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -21,9 +23,9 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var view = activity?.let { ScreenCanvas(it.applicationContext) }
-        var frame = view?.findViewById<FrameLayout>(R.id.frameFirst)
+        var view1 = activity?.let { ScreenCanvas(it.applicationContext) }
+        frame = view.findViewById<FrameLayout>(R.id.frameFirst)!!
 
-        frame?.addView(view)
+        frame.addView(view1)
     }
 }

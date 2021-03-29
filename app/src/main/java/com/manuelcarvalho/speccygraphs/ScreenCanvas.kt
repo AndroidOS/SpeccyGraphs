@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
@@ -59,6 +60,9 @@ class ScreenCanvas(context: Context) : View(context) {
 //            Log.d(TAG, " $x")
 //            val x1 = x * touchX / 10
         extraCanvas.drawPoint(touchX.toFloat(), touchY.toFloat(), paint)
+
+
+        Log.d(TAG, "${touchX}")
         // }
 
         invalidate()

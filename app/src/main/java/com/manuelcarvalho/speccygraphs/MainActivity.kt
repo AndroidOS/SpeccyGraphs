@@ -9,8 +9,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var view = ScreenCanvas(this)
-        setContentView(view)
+        //var view = ScreenCanvas(this)
+        setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
 //        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
