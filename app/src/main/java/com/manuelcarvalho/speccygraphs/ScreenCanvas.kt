@@ -40,6 +40,8 @@ class ScreenCanvas(context: Context) : View(context) {
         canvasWidth = w
         canvasHeight = h
 
+        Log.d(TAG, "${w / 256} ${h / 192}")
+
 
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         extraCanvas = Canvas(extraBitmap)
@@ -63,7 +65,6 @@ class ScreenCanvas(context: Context) : View(context) {
         extraCanvas.drawPoint(touchX.toFloat(), touchY.toFloat(), paint)
 
 
-        Log.d(TAG, "${touchX}")
         // }
 
         invalidate()
