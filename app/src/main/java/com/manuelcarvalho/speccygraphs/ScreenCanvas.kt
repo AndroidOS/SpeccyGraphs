@@ -23,6 +23,9 @@ class ScreenCanvas(context: Context) : View(context) {
     private var canvasHeight = 0
     private var canvasWidth = 0
 
+    private var zxArray = Array(192) { Array(256) { 0 } }
+
+
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.canvasBackground, null)
     private val drawColor = ResourcesCompat.getColor(resources, R.color.canvasColor, null)
 
@@ -40,6 +43,8 @@ class ScreenCanvas(context: Context) : View(context) {
         canvasWidth = w
         canvasHeight = h
 
+        zxArray[20][30] = 1
+
         Log.d(TAG, "${w / 256} ${h / 192}")
 
 
@@ -50,6 +55,29 @@ class ScreenCanvas(context: Context) : View(context) {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+
+        val xStep = canvasWidth / 256
+        val yStep = canvasHeight / 192
+
+        var Xcanvas = 0.0f
+        var Ycanvas = 0.0f
+        for (y1 in 0..191) {
+            for (x1 in 0..255) {
+                val pix = zxArray[y1][x1]
+                if (pix == 1) {
+                    //extraCanvas.drawPoint(Xcanvas, Ycanvas, paint)
+                    val selectPaint = paint
+                    selectPaint.style = Paint.Style.FILL
+                    extraCanvas.drawRect(
+                            Xcanvas,
+                            Ycanvas,
+                            (Xcanvas + xStep),
+                            (Ycanvas + yStep),
+                            selectPaint
+                    )
+                }
+            }
+        }
 
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
     }
