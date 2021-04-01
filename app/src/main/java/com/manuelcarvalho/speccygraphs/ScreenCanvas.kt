@@ -46,6 +46,11 @@ class ScreenCanvas(context: Context) : View(context) {
         zxArray[20][30] = 1
 
         Log.d(TAG, "${w / 256} ${h / 192}")
+        zxArray[90][128] = 1
+
+        for (x in 0..100) {
+            zxArray[50][x] = 1
+        }
 
 
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -69,10 +74,10 @@ class ScreenCanvas(context: Context) : View(context) {
                     val selectPaint = paint
                     selectPaint.style = Paint.Style.FILL
                     extraCanvas.drawRect(
-                            Xcanvas,
-                            Ycanvas,
-                            (Xcanvas + xStep),
-                            (Ycanvas + yStep),
+                            x1.toFloat(),
+                            y1.toFloat(),
+                            (x1.toFloat() + xStep),
+                            (y1.toFloat() + yStep),
                             selectPaint
                     )
                 }
