@@ -1,5 +1,6 @@
 package com.manuelcarvalho.speccygraphs
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -33,5 +34,11 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun decodeImage() {
+        val conf = Bitmap.Config.ARGB_8888
+        val bmp =
+                Bitmap.createBitmap(256, 192, conf)
     }
 }
