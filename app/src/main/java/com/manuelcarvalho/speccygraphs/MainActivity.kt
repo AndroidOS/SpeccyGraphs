@@ -1,10 +1,15 @@
 package com.manuelcarvalho.speccygraphs
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,10 +19,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-//        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
-//        }
+        val bartBmp = BitmapFactory.decodeResource(application.resources,
+                R.drawable.bart)
+
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -40,5 +47,11 @@ class MainActivity : AppCompatActivity() {
         val conf = Bitmap.Config.ARGB_8888
         val bmp =
                 Bitmap.createBitmap(256, 192, conf)
+    }
+
+    private fun resize(image: Drawable): Bitmap? {
+        val b = (image as BitmapDrawable).bitmap
+        val bitmapResized = Bitmap.createScaledBitmap(b, 256, 192, false)
+        return bitmapResized
     }
 }
