@@ -1,5 +1,9 @@
 package com.manuelcarvalho.speccygraphs
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,12 +30,26 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bartBmp = BitmapFactory.decodeResource(resources,
+                R.drawable.bart)
+
+        val bart2 = resize(resources.getDrawable(R.drawable.bart))
+
+
         var view1 = activity?.let { ScreenCanvas(it.applicationContext) }
         frame = view.findViewById<FrameLayout>(R.id.frameFirst)!!
 
         frame.addView(view1)
 
         imageV = view.findViewById<ImageView>(R.id.imageView)
-        imageV.setImageDrawable(resources.getDrawable(R.drawable.bart))
+        //imageV.setImageDrawable(resources.getDrawable(R.drawable.bart))
+
+        imageV.setImageBitmap(bart2)
+    }
+
+    private fun resize(image: Drawable): Bitmap? {
+        val b = (image as BitmapDrawable).bitmap
+        val bitmapResized = Bitmap.createScaledBitmap(b, 256, 192, false)
+        return bitmapResized
     }
 }
