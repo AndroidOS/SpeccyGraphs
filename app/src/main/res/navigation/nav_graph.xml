@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.manuelcarvalho.speccygraphs.FirstFragment"
+        android:name="com.manuelcarvalho.speccygraphs.view.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 

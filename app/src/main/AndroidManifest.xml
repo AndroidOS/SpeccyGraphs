@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpeccyGraphs">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.SpeccyGraphs.NoActionBar">
             <intent-filter>

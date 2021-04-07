@@ -1,4 +1,4 @@
-package com.manuelcarvalho.speccygraphs
+package com.manuelcarvalho.speccygraphs.view
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.manuelcarvalho.speccygraphs.R
 
 
 class MainActivity : AppCompatActivity() {

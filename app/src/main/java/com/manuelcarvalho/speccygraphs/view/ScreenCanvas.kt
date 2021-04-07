@@ -1,4 +1,4 @@
-package com.manuelcarvalho.speccygraphs
+package com.manuelcarvalho.speccygraphs.view
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import com.manuelcarvalho.speccygraphs.R
 
 
 private const val TAG = "Canvas"

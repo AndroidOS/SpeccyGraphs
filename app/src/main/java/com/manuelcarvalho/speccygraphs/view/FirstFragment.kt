@@ -1,4 +1,4 @@
-package com.manuelcarvalho.speccygraphs
+package com.manuelcarvalho.speccygraphs.view
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.manuelcarvalho.speccygraphs.R
 
 
 
