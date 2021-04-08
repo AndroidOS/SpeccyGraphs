@@ -9,11 +9,16 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.manuelcarvalho.speccygraphs.R
+import com.manuelcarvalho.speccygraphs.viewmodel.AppViewModel
 
 
 class MainActivity : AppCompatActivity() {
+
+
+    private lateinit var viewModel: AppViewModel
 
     private lateinit var fragImage: ImageView
 
@@ -23,13 +28,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        viewModel = ViewModelProviders.of(this)[AppViewModel::class.java]
+
         //fragImage = findViewById<ImageView>(R.id.imageView)
 
         val bartBmp = BitmapFactory.decodeResource(application.resources,
                 R.drawable.bart)
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            fragImage.setImageBitmap(bartBmp)
+            // fragImage.setImageBitmap(bartBmp)
+            viewModel.newImage.value = bartBmp
         }
     }
 
