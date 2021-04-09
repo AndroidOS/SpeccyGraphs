@@ -15,6 +15,7 @@ import com.manuelcarvalho.speccygraphs.R
 import com.manuelcarvalho.speccygraphs.viewmodel.AppViewModel
 
 
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
 
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             // fragImage.setImageBitmap(bartBmp)
-            viewModel.newImage.value = bartBmp
+            val bart2 = resize(resources.getDrawable(R.drawable.bart))
+            viewModel.newImage.value = bart2
         }
     }
 

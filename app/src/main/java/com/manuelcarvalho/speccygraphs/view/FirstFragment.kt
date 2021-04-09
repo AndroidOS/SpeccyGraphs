@@ -5,18 +5,22 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.manuelcarvalho.speccygraphs.R
+import com.manuelcarvalho.speccygraphs.viewmodel.AppViewModel
 
-
-
+private const val TAG = "FirstFragment"
 class FirstFragment : Fragment() {
 
+    private lateinit var viewModel: AppViewModel
     lateinit var frame: FrameLayout
     private lateinit var imageV: ImageView
 
@@ -30,6 +34,11 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = activity?.run {
+            ViewModelProviders.of(this)[AppViewModel::class.java]
+        } ?: throw Exception("Invalid Activity")
+
 
         val bartBmp = BitmapFactory.decodeResource(resources,
                 R.drawable.bart)
@@ -45,12 +54,24 @@ class FirstFragment : Fragment() {
         imageV = view.findViewById<ImageView>(R.id.imageView)
         //imageV.setImageDrawable(resources.getDrawable(R.drawable.bart))
 
-        imageV.setImageBitmap(bart2)
+        //imageV.setImageBitmap(bart2)
+        observeViewModel()
     }
 
     private fun resize(image: Drawable): Bitmap? {
         val b = (image as BitmapDrawable).bitmap
         val bitmapResized = Bitmap.createScaledBitmap(b, 256, 192, false)
         return bitmapResized
+    }
+
+    private fun observeViewModel() {
+        Log.d(TAG, "ObserveViewModel started")
+        viewModel.newImage.observe(this, Observer { image ->
+            image?.let {
+                imageV.setImageBitmap(image)
+
+            }
+        })
+
     }
 }
