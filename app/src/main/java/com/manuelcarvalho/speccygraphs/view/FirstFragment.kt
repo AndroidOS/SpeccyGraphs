@@ -66,7 +66,7 @@ class FirstFragment : Fragment() {
 
     private fun observeViewModel() {
         Log.d(TAG, "ObserveViewModel started")
-        viewModel.newImage.observe(this, Observer { image ->
+        viewModel.newImage.observe(viewLifecycleOwner, Observer { image ->
             image?.let {
                 imageV.setImageBitmap(image)
 
