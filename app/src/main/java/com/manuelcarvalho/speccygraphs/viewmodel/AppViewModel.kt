@@ -16,6 +16,7 @@ private const val TAG = "AppViewModel"
 class AppViewModel(application: Application) : BaseViewModel(application) {
 
     val newImage = MutableLiveData<Bitmap>()
+    val imageArray = MutableLiveData<ArrayList<ArrayList<Int>>>()
 
     fun decodeBitmapZX(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
