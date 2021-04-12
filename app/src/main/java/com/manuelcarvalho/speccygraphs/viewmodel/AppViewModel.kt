@@ -3,6 +3,7 @@ package com.manuelcarvalho.speccygraphs.viewmodel
 import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.util.Log
 import androidx.core.graphics.get
 import androidx.core.graphics.set
 import androidx.lifecycle.MutableLiveData
@@ -20,6 +21,8 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
     fun decodeBitmapZX(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
+
+            var zxArray = Array(192) { Array(256) { 0 } }
             var changeValue = 0
 
             val conf = Bitmap.Config.ARGB_8888
@@ -49,7 +52,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
 
             var vzByte = arrayListOf(1, 2, 3, 4)
-            //Log.d(TAG, "${minimumVal}  ${maximumVal}")
+            Log.d(TAG, "${minimumVal}  ${maximumVal}")
 
             for (y in 0..bitmap.height - 1) {
 

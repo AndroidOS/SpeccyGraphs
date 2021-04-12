@@ -36,9 +36,14 @@ class MainActivity : AppCompatActivity() {
         val bartBmp = BitmapFactory.decodeResource(application.resources,
                 R.drawable.bart)
 
+        val bart2 = resize(resources.getDrawable(R.drawable.bart))
+        if (bart2 != null) {
+            viewModel.decodeBitmapZX(bart2)
+        }
+
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             // fragImage.setImageBitmap(bartBmp)
-            val bart2 = resize(resources.getDrawable(R.drawable.bart))
+            //val bart2 = resize(resources.getDrawable(R.drawable.bart))
             viewModel.newImage.value = bart2
         }
     }
