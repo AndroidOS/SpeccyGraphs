@@ -43,12 +43,19 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                     val pix = bitmap.get(x, y)
                     if (minimumVal > pix) {
                         maximumVal = pix
+
                     }
                     if (maximumVal < pix) {
                         maximumVal = pix
                     }
+
+                    if (pix > (maximumVal / 2)) {
+                        //bmp.set(x,y,5)
+                    }
                 }
             }
+
+            viewModelScope.launch(Dispatchers.Main) { newImage.value = bmp }
 
 
             var vzByte = arrayListOf(1, 2, 3, 4)
@@ -66,7 +73,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
 
                     if (pix < changeValue) {       //-6768818
-                        bmp.set(x, y, Color.BLACK)
+                        //bmp.set(x, y, Color.BLACK)
                         hexNum = "0"
                         vzByte[bitcount] = 15
                     } else {
