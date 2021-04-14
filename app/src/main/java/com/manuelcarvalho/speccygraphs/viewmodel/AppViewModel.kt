@@ -39,8 +39,11 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
             for (y in 0..bitmap.height - 1) {
 
+
                 for (x in 0..bitmap.width - 1) {
                     val pix = bitmap.get(x, y)
+
+                    Log.d(TAG, "${pix}")
                     if (minimumVal > pix) {
                         maximumVal = pix
 
@@ -49,9 +52,13 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                         maximumVal = pix
                     }
 
-                    if (pix > (maximumVal / 2)) {
-                        //bmp.set(x,y,5)
+                    //-15359521
+                    if (pix > (-10359521)) {
+                        bmp.set(x, y, Color.WHITE)
+                    } else {
+                        bmp.set(x, y, Color.BLACK)
                     }
+
                 }
             }
 
@@ -77,7 +84,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                         hexNum = "0"
                         vzByte[bitcount] = 15
                     } else {
-                        bmp.set(x, y, Color.WHITE)
+                        //bmp.set(x, y, Color.WHITE)
                         hexNum = "15"
                         vzByte[bitcount] = 0
                     }
