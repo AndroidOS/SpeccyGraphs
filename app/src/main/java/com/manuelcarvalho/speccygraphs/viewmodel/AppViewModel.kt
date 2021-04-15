@@ -30,7 +30,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                     Bitmap.createBitmap(bitmap.width, bitmap.height, conf)
             var minimumVal = 0      //      -15768818
             //var maximumVal = 0 //  -1382691
-            var maximumVal = findBitmapLowest(bitmap) / 2
+            var maximumVal1 = findBitmapLowest(bitmap) / 2
 
             var emailString = "picture .byte "
             var hexNum = ""
@@ -43,17 +43,18 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 for (x in 0..bitmap.width - 1) {
                     val pix = bitmap.get(x, y)
 
-                    Log.d(TAG, "${pix}")
+                    //Log.d(TAG, "${pix}")
                     if (minimumVal > pix) {
-                        maximumVal = pix
+                        //maximumVal = pix
 
                     }
-                    if (maximumVal < pix) {
-                        maximumVal = pix
-                    }
+//                    if (maximumVal < pix) {
+//                        maximumVal = pix
+//                    }
 
-                    //-15359521
-                    if (pix > (-10359521)) {
+                    //-15359521 Low -16777216 Good -10359521
+                    //-16777216
+                    if (pix > (maximumVal1 - 5000000)) {
                         bmp.set(x, y, Color.WHITE)
                     } else {
                         bmp.set(x, y, Color.BLACK)
@@ -66,7 +67,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
 
             var vzByte = arrayListOf(1, 2, 3, 4)
-            Log.d(TAG, "${minimumVal}  ${maximumVal}")
+            //Log.d(TAG, "${minimumVal}  ${maximumVal}")
 
             for (y in 0..bitmap.height - 1) {
 
@@ -149,6 +150,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 }
             }
         }
+        Log.d(TAG, "Lowest ${value}")
         return value / 100
     }
 
