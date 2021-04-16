@@ -17,7 +17,8 @@ private const val TAG = "AppViewModel"
 class AppViewModel(application: Application) : BaseViewModel(application) {
 
     val newImage = MutableLiveData<Bitmap>()
-    val imageArray = MutableLiveData<ArrayList<ArrayList<Int>>>()
+    val imageArray1 = MutableLiveData<ArrayList<ArrayList<Int>>>()
+    val imageArray = MutableLiveData<Array<Array<Int>>>()
 
     fun decodeBitmapZX(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -36,6 +37,8 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
             var hexNum = ""
             var lineNum = 0
             var pixelCount = 0
+
+            Log.d(TAG, "${bitmap.width} ${bitmap.height}")
 
             for (y in 0..bitmap.height - 1) {
 
@@ -56,14 +59,19 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                     //-16777216
                     if (pix > (maximumVal1 - 5000000)) {
                         bmp.set(x, y, Color.WHITE)
+                        zxArray[y][x] = 1
                     } else {
                         bmp.set(x, y, Color.BLACK)
+                        zxArray[y][x] = 0
                     }
 
                 }
             }
 
-            viewModelScope.launch(Dispatchers.Main) { newImage.value = bmp }
+            viewModelScope.launch(Dispatchers.Main) {
+                newImage.value = bmp
+                imageArray.value = zxArray
+            }
 
 
             var vzByte = arrayListOf(1, 2, 3, 4)
