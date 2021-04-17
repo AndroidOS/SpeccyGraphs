@@ -51,9 +51,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                         //maximumVal = pix
 
                     }
-//                    if (maximumVal < pix) {
-//                        maximumVal = pix
-//                    }
+
 
                     //-15359521 Low -16777216 Good -10359521
                     //-16777216
@@ -73,53 +71,15 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 imageArray.value = zxArray
             }
 
-
-            var vzByte = arrayListOf(1, 2, 3, 4)
-            //Log.d(TAG, "${minimumVal}  ${maximumVal}")
-
-            for (y in 0..bitmap.height - 1) {
-
-                var bitcount = 0
-
-                for (x in 0..bitmap.width - 1) {
-
-                    val pix = bitmap.get(x, y)
-                    lineNum += 1
-                    pixelCount += 1
-
-
-                    if (pix < changeValue) {       //-6768818
-                        //bmp.set(x, y, Color.BLACK)
-                        hexNum = "0"
-                        vzByte[bitcount] = 15
-                    } else {
-                        //bmp.set(x, y, Color.WHITE)
-                        hexNum = "15"
-                        vzByte[bitcount] = 0
-                    }
-
-                    bitcount += 1
-                    if (bitcount > 3) {
-                        bitcount = 0
-                        hexNum = createByte(vzByte)
-                        if (lineNum > 20) {
-                            lineNum = 0
-                            emailString += "\n    .byte " + hexNum + ","
-                        } else if (lineNum > 19) {
-                            emailString += hexNum
-                            //lineNum = 0
-                        } else {
-                            emailString += hexNum + ","
-                        }
-                    }
-                }
-
-            }
+            createAssArray()
 
         }
 
     }
 
+    private fun createAssArray() {
+
+    }
 
     private fun createByte(list: List<Int>): String {
 
