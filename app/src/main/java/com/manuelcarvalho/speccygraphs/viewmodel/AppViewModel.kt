@@ -23,6 +23,8 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     fun decodeBitmapZX(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
 
+            var byteArray = IntArray(8) { i -> 0 }
+
             var zxArray = Array(192) { Array(256) { 0 } }
             var changeValue = 0
 
@@ -40,17 +42,15 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
             Log.d(TAG, "${bitmap.width} ${bitmap.height}")
 
+            var bitIndex = 0
+
             for (y in 0..bitmap.height - 1) {
 
 
                 for (x in 0..bitmap.width - 1) {
+
+
                     val pix = bitmap.get(x, y)
-
-                    //Log.d(TAG, "${pix}")
-                    if (minimumVal > pix) {
-                        //maximumVal = pix
-
-                    }
 
 
                     //-15359521 Low -16777216 Good -10359521
@@ -58,9 +58,19 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                     if (pix > (maximumVal1 - 5000000)) {
                         bmp.set(x, y, Color.WHITE)
                         zxArray[y][x] = 1
+                        byteArray[bitIndex] = 1
                     } else {
                         bmp.set(x, y, Color.BLACK)
                         zxArray[y][x] = 0
+                        byteArray[bitIndex] = 0
+                    }
+
+                    bitIndex += 1
+
+                    if (bitIndex > 7) {
+                        createAssArray(byteArray)
+                        bitIndex = 0
+
                     }
 
                 }
@@ -71,13 +81,19 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 imageArray.value = zxArray
             }
 
-            createAssArray()
+            //createAssArray()
 
         }
 
     }
 
-    private fun createAssArray() {
+    private fun createAssArray(pixArray: IntArray) {
+        for (i in pixArray) {
+            Log.d(TAG, "${i}")
+        }
+
+        Log.d(TAG, "*******************")
+
 
     }
 
