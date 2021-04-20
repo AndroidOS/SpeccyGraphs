@@ -59,17 +59,19 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                         bmp.set(x, y, Color.WHITE)
                         zxArray[y][x] = 1
                         byteArray[bitIndex] = 1
+                        byteArray.set(bitIndex, 1)
                     } else {
                         bmp.set(x, y, Color.BLACK)
                         zxArray[y][x] = 0
                         byteArray[bitIndex] = 0
+                        byteArray.set(bitIndex, 0)
                     }
 
                     bitIndex += 1
 
                     if (bitIndex > 7) {
-                        createAssArray(byteArray)
-                        Log.d(TAG, "${byteArray.size}")
+                        val numStr = createAssArray(byteArray)
+                        Log.d(TAG, "${numStr}")
                         bitIndex = 0
 
                     }
@@ -88,41 +90,51 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
     }
 
-    private fun createAssArray(pixArray: IntArray) {
-        for (i in pixArray) {
-
+    private fun createAssArray(list: IntArray): String {
+        for (i in 0..7) {
+            //Log.d(TAG,"$i ${list[i]}")
         }
-        Log.d(TAG, "${pixArray}")
+        //Log.d(TAG, "${pixArray}")
         Log.d(TAG, "*******************")
-
-
-    }
-
-    private fun createByte(list: List<Int>): String {
 
         var newByte = 0
 
-        if (list[0] == 15) {
-            newByte += 128
-            newByte += 64
+        if (list[0] == 1) {
+            newByte += 1
         }
 
-        if (list[1] == 15) {
-            newByte += 32
-            newByte += 16
+        if (list[1] == 1) {
+            newByte += 2
         }
 
-        if (list[2] == 15) {
-            newByte += 8
+        if (list[2] == 1) {
             newByte += 4
         }
 
-        if (list[3] == 15) {
-            newByte += 2
-            newByte += 1
+        if (list[3] == 1) {
+            newByte += 8
         }
+
+        if (list[4] == 1) {
+            newByte += 16
+        }
+
+        if (list[5] == 1) {
+            newByte += 32
+        }
+
+        if (list[6] == 1) {
+            newByte += 64
+        }
+
+        if (list[7] == 1) {
+            newByte += 128
+        }
+
         // Log.d(TAG, "${list}   ${newByte}")
         return newByte.toString()
+
+
     }
 
     private fun findBitmapLowest(bitmap: Bitmap): Int {
