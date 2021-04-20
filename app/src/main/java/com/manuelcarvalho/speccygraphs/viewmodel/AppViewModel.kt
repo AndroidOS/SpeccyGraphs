@@ -42,11 +42,11 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
             Log.d(TAG, "${bitmap.width} ${bitmap.height}")
 
-            var bitIndex = 0
+
 
             for (y in 0..bitmap.height - 1) {
 
-
+                var bitIndex = 0
                 for (x in 0..bitmap.width - 1) {
 
 
@@ -69,6 +69,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
                     if (bitIndex > 7) {
                         createAssArray(byteArray)
+                        Log.d(TAG, "${byteArray.size}")
                         bitIndex = 0
 
                     }
@@ -81,7 +82,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 imageArray.value = zxArray
             }
 
-            //createAssArray()
+            Log.d(TAG, "$")
 
         }
 
@@ -89,9 +90,9 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
     private fun createAssArray(pixArray: IntArray) {
         for (i in pixArray) {
-            Log.d(TAG, "${i}")
-        }
 
+        }
+        Log.d(TAG, "${pixArray}")
         Log.d(TAG, "*******************")
 
 
