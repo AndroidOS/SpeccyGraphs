@@ -8,6 +8,7 @@ import androidx.core.graphics.get
 import androidx.core.graphics.set
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.manuelcarvalho.speccygraphs.utils.formatString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -43,7 +44,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
             Log.d(TAG, "${bitmap.width} ${bitmap.height}")
 
 
-
+            var strIndex = 0
             for (y in 0..bitmap.height - 1) {
 
                 var bitIndex = 0
@@ -70,13 +71,27 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                     bitIndex += 1
 
                     if (bitIndex > 7) {
-                        val numStr = createAssArray(byteArray)
-                        Log.d(TAG, "${numStr}")
+                        var numStr = createAssArray(byteArray)
+                        //Log.d(TAG, "${numStr}")
+                        if (strIndex < 10) {
+                            numStr += ","
+                        }
+
+                        formatString += numStr
+                        strIndex += 1
+
+                        if (strIndex > 10) {
+                            formatString += "\n"
+                            formatString += "DB "
+                            strIndex = 0
+                        }
                         bitIndex = 0
 
                     }
 
                 }
+
+                Log.d(TAG, "${formatString}")
             }
 
             viewModelScope.launch(Dispatchers.Main) {
@@ -89,6 +104,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
         }
 
     }
+
 
     private fun createAssArray(list: IntArray): String {
         for (i in 0..7) {
