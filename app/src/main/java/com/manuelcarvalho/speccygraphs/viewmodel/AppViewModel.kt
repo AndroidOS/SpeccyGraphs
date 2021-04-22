@@ -17,6 +17,8 @@ private const val TAG = "AppViewModel"
 
 class AppViewModel(application: Application) : BaseViewModel(application) {
 
+    var byteCount = 0
+
     val newImage = MutableLiveData<Bitmap>()
     val imageArray1 = MutableLiveData<ArrayList<ArrayList<Int>>>()
     val imageArray = MutableLiveData<Array<Array<Int>>>()
@@ -99,7 +101,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 imageArray.value = zxArray
             }
 
-            Log.d(TAG, "$")
+            Log.d(TAG, "${byteCount}")
 
         }
 
@@ -107,6 +109,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
 
     private fun createAssArray(list: IntArray): String {
+        byteCount += 1
         for (i in 0..7) {
             //Log.d(TAG,"$i ${list[i]}")
         }
