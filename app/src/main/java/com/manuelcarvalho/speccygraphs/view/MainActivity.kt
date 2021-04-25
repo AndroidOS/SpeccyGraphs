@@ -37,8 +37,7 @@ class MainActivity : AppCompatActivity() {
     private val fileName = "image.asm"
 
     private val STORAGE_PERMISSION_CODE = 101
-    private val CAMERA_PERMISSION_CODE = 105
-    private val PHOTO_PERMISSION_CODE = 106
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +70,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             // fragImage.setImageBitmap(bartBmp)
             //val bart2 = resize(resources.getDrawable(R.drawable.bart))
-            viewModel.newImage.value = bart2
+            //viewModel.newImage.value = bart2
+            createFile()
         }
 
 
@@ -140,8 +140,8 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == STORAGE_PERMISSION_CODE && data != null) {
-            
 
+//            createFile()
         }
     }
 
