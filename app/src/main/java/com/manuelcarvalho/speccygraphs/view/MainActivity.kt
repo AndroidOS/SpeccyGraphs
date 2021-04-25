@@ -1,6 +1,8 @@
 package com.manuelcarvalho.speccygraphs.view
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -134,4 +136,13 @@ class MainActivity : AppCompatActivity() {
                     .show()
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == STORAGE_PERMISSION_CODE && data != null) {
+            
+
+        }
+    }
+
 }
