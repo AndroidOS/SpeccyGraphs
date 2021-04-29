@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.manuelcarvalho.speccygraphs.R
 import com.manuelcarvalho.speccygraphs.utils.formatString
+import com.manuelcarvalho.speccygraphs.utils.sendEmail
 import com.manuelcarvalho.speccygraphs.viewmodel.AppViewModel
 import java.io.File
 import java.io.FileOutputStream
@@ -88,7 +89,15 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
+
+            R.id.action_email -> {
+                sendEmail()
+                return true
+            }
+
             R.id.action_settings -> true
+
+
             else -> super.onOptionsItemSelected(item)
         }
     }
