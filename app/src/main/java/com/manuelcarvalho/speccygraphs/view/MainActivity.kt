@@ -8,7 +8,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -16,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.manuelcarvalho.speccygraphs.R
@@ -91,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.action_email -> {
-                sendEmail()
+                sendEmail(this, createUri()!!)
                 return true
             }
 
@@ -153,5 +156,27 @@ class MainActivity : AppCompatActivity() {
 //            createFile()
         }
     }
+
+    private fun createUri(): Uri? {
+        val requestFile = File(getExternalFilesDir(filepath), fileName)
+
+        // Use the FileProvider to get a content URI
+        val fileUri: Uri? = try {
+            FileProvider.getUriForFile(
+                    this@MainActivity,
+                    "com.manuelcarvalho.speccygraphs.fileprovider",
+                    requestFile
+            )
+        } catch (e: IllegalArgumentException) {
+            Log.e(
+                    "File Selector",
+                    "The selected file can't be shared: $requestFile"
+            )
+            null
+        }
+        //Log.e(TAG,"Uri ${fileUri}")
+        return fileUri
+    }
+
 
 }
