@@ -2,8 +2,14 @@
     <!-- Base application theme. -->
     <style name="Theme.SpeccyGraphs" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <!--        <color name="colorPrimary">#ff8f00</color>-->
+        <!--        <color name="colorPrimaryVariant">#ff8f00</color>-->
+        <!--&lt;!&ndash;        <color name="colorPrimaryDark">#c56000</color>&ndash;&gt;-->
+        <!--&lt;!&ndash;        <color name="colorAccent">#ff5722</color>&ndash;&gt;-->
+        <!--&lt;!&ndash;        <color name="colorPrimaryLight">#ffc046</color>&ndash;&gt;-->
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
