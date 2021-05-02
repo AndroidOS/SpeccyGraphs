@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private val fileName = "image.asm"
 
     private val STORAGE_PERMISSION_CODE = 101
+    private val CAMERA_PERMISSION_CODE = 105
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,6 +97,11 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_email -> {
                 sendEmail(this, createUri()!!)
+                return true
+            }
+
+            R.id.action_camera -> {
+                //sendEmail(this, createUri()!!)
                 return true
             }
 
@@ -176,6 +183,12 @@ class MainActivity : AppCompatActivity() {
         }
         //Log.e(TAG,"Uri ${fileUri}")
         return fileUri
+    }
+
+    private fun capturePhoto() {
+
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, CAMERA_PERMISSION_CODE)
     }
 
 
