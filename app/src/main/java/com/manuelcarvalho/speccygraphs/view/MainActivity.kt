@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.action_camera -> {
-                //sendEmail(this, createUri()!!)
+                capturePhoto()
                 return true
             }
 
