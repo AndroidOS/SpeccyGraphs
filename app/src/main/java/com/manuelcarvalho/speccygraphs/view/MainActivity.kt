@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.manuelcarvalho.speccygraphs.R
 import com.manuelcarvalho.speccygraphs.utils.formatString
+import com.manuelcarvalho.speccygraphs.utils.getResizedBitmap
 import com.manuelcarvalho.speccygraphs.utils.sendEmail
 import com.manuelcarvalho.speccygraphs.viewmodel.AppViewModel
 import java.io.File
@@ -156,13 +157,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == STORAGE_PERMISSION_CODE && data != null) {
-
-//            createFile()
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == Activity.RESULT_OK && requestCode == STORAGE_PERMISSION_CODE && data != null) {
+//
+////            createFile()
+//        }
+//    }
 
     private fun createUri(): Uri? {
         val requestFile = File(getExternalFilesDir(filepath), fileName)
@@ -189,6 +190,23 @@ class MainActivity : AppCompatActivity() {
 
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(cameraIntent, CAMERA_PERMISSION_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PERMISSION_CODE && data != null) {
+            val newPhoto = (data.extras?.get("data") as Bitmap)
+            val newImage = getResizedBitmap(newPhoto, 256, 192)
+            if (newImage != null) {
+                //workBitmap = newImage
+                Log.d(TAG, "valid image aquired")
+            }
+
+//            if (newImage != null) {
+//
+//            }
+
+        }
     }
 
 
