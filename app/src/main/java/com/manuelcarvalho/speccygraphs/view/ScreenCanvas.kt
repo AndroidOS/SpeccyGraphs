@@ -44,17 +44,17 @@ class ScreenCanvas(context: Context) : View(context) {
         canvasWidth = w
         canvasHeight = h
 
-        zxArray[20][30] = 1
-        zxArray[191][255] = 1
+//        zxArray[20][30] = 1
+//        zxArray[191][255] = 1
 
         Log.d(TAG, "${w / 256} ${h / 192}")
-        zxArray[90][128] = 1
-        zxArray[191][254] = 1
-        zxArray[191][253] = 1
+//        zxArray[90][128] = 1
+//        zxArray[191][254] = 1
+//        zxArray[191][253] = 1
 
-        for (x in 0..255) {
-            zxArray[50][x] = 1
-        }
+//        for (x in 0..255) {
+//            zxArray[50][x] = 1
+//        }
 
 
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
