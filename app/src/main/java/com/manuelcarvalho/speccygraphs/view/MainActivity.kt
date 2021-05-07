@@ -198,7 +198,7 @@ class MainActivity : AppCompatActivity() {
             val newPhoto = (data.extras?.get("data") as Bitmap)
             val newImage = getResizedBitmap(newPhoto, 256, 192)
             if (newImage != null) {
-                //workBitmap = newImage
+                viewModel.newImage.value = newImage
                 Log.d(TAG, "valid image aquired")
             }
 
