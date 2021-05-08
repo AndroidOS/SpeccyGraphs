@@ -49,7 +49,7 @@ class FirstFragment : Fragment() {
         var view1 = activity?.let { ScreenCanvas(it.applicationContext) }
         frame = view.findViewById<FrameLayout>(R.id.frameFirst)!!
 
-        frame.addView(view1)
+        //frame.addView(view1)
 
         imageV = view.findViewById<ImageView>(R.id.imageView)
         //imageV.setImageDrawable(resources.getDrawable(R.drawable.bart))
