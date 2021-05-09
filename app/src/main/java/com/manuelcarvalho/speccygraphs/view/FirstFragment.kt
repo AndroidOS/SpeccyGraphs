@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,7 +20,7 @@ private const val TAG = "FirstFragment"
 class FirstFragment : Fragment() {
 
     private lateinit var viewModel: AppViewModel
-    lateinit var frame: FrameLayout
+    //lateinit var frame: FrameLayout
     private lateinit var imageV: ImageView
 
     override fun onCreateView(
@@ -47,7 +46,7 @@ class FirstFragment : Fragment() {
 
 
         var view1 = activity?.let { ScreenCanvas(it.applicationContext) }
-        frame = view.findViewById<FrameLayout>(R.id.frameFirst)!!
+        //frame = view.findViewById<FrameLayout>(R.id.frameFirst)!!
 
         //frame.addView(view1)
 
