@@ -62,6 +62,25 @@ class FirstFragment : Fragment() {
 
         //imageV.setImageBitmap(bart2)
         observeViewModel()
+
+        imageSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            var progressChangedValue = 0
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                progressChangedValue = progress
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+//                Toast.makeText(
+//                    , "Seek bar progress is :$progressChangedValue",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+                Log.d(TAG, "$progressChangedValue")
+            }
+        })
     }
 
     private fun resize(image: Drawable): Bitmap? {
