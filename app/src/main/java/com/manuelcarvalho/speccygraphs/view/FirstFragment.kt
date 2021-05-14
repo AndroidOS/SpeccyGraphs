@@ -38,6 +38,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         imageSeekBar = view.findViewById(R.id.seekBar)
+        imageSeekBar.progress = 50
 
         viewModel = activity?.run {
             ViewModelProviders.of(this)[AppViewModel::class.java]
