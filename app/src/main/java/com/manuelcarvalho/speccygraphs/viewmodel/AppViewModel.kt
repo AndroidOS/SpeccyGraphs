@@ -8,6 +8,7 @@ import androidx.core.graphics.get
 import androidx.core.graphics.set
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.manuelcarvalho.speccygraphs.utils.contrast
 import com.manuelcarvalho.speccygraphs.utils.formatString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +27,8 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     fun decodeBitmapZX(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
 
+            var contrast2 = contrast * 0.025
+
             var byteArray = IntArray(8) { i -> 0 }
 
             var zxArray = Array(192) { Array(256) { 0 } }
@@ -33,7 +36,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
             val conf = Bitmap.Config.ARGB_8888
             val bmp =
-                    Bitmap.createBitmap(bitmap.width, bitmap.height, conf)
+                Bitmap.createBitmap(bitmap.width, bitmap.height, conf)
             var minimumVal = 0      //      -15768818
             //var maximumVal = 0 //  -1382691
             var maximumVal1 = findBitmapLowest(bitmap) / 2
@@ -58,7 +61,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
                     //-15359521 Low -16777216 Good -10359521
                     //-16777216
-                    if (pix > (maximumVal1 - 5000000)) {
+                    if (pix > (maximumVal1 - 5000000 * contrast2)) {
                         bmp.set(x, y, Color.WHITE)
                         zxArray[y][x] = 1
                         byteArray[bitIndex] = 1
