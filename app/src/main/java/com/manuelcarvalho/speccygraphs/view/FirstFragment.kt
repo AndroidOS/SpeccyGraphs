@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
@@ -27,9 +28,11 @@ class FirstFragment : Fragment() {
     private lateinit var imageV: ImageView
     private lateinit var imageSeekBar: SeekBar
 
+    private lateinit var redoButton: Button
+
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_first, container, false)
@@ -39,6 +42,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         imageSeekBar = view.findViewById(R.id.seekBar)
+        redoButton = view.findViewById(R.id.redoButton)
         imageSeekBar.progress = 50
 
         viewModel = activity?.run {
@@ -61,6 +65,10 @@ class FirstFragment : Fragment() {
 
         imageV = view.findViewById<ImageView>(R.id.imageView)
         //imageV.setImageDrawable(resources.getDrawable(R.drawable.bart))
+
+        redoButton.setOnClickListener {
+            Log.d(TAG, "Redo Button pressed")
+        }
 
         //imageV.setImageBitmap(bart2)
         observeViewModel()
