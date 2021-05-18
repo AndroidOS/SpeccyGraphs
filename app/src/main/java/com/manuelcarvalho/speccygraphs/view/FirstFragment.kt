@@ -85,6 +85,7 @@ class FirstFragment : Fragment() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
                 contrast = progressChangedValue
+                viewModel.imageContrast.value = progressChangedValue
                 Log.d(TAG, "$progressChangedValue")
             }
         })

@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.manuelcarvalho.speccygraphs.R
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             createFile()
         }
 
-
+        observeViewModel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -208,6 +209,17 @@ class MainActivity : AppCompatActivity() {
 //            }
 
         }
+    }
+
+    private fun observeViewModel() {
+        Log.d(TAG, "ObserveViewModel started")
+        viewModel.imageContrast.observe(this, Observer { contrast ->
+
+            Log.d(TAG, "MainActivity $contrast")
+
+
+        })
+
     }
 
 

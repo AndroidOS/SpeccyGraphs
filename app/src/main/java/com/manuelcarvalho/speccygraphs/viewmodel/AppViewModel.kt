@@ -23,6 +23,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     val newImage = MutableLiveData<Bitmap>()
     val imageArray1 = MutableLiveData<ArrayList<ArrayList<Int>>>()
     val imageArray = MutableLiveData<Array<Array<Int>>>()
+    val imageContrast = MutableLiveData<Int>()
 
     fun decodeBitmapZX(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
