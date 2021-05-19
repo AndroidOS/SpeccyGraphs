@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     internal var myExternalFile: File? = null
     private lateinit var fragImage: ImageView
     private val fileName = "image.asm"
+    private lateinit var bart2: Bitmap
 
     private val STORAGE_PERMISSION_CODE = 101
     private val CAMERA_PERMISSION_CODE = 105
@@ -70,9 +71,9 @@ class MainActivity : AppCompatActivity() {
         val bartBmp = BitmapFactory.decodeResource(application.resources,
                 R.drawable.bart)
 
-        val bart2 = resize(resources.getDrawable(R.drawable.bart))
+        bart2 = resize(resources.getDrawable(R.drawable.bart))!!
         if (bart2 != null) {
-            viewModel.decodeBitmapZX(bart2)
+            viewModel.decodeBitmapZX(bart2, contrast = 50)
         }
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
@@ -158,13 +159,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (resultCode == Activity.RESULT_OK && requestCode == STORAGE_PERMISSION_CODE && data != null) {
-//
-////            createFile()
-//        }
-//    }
 
     private fun createUri(): Uri? {
         val requestFile = File(getExternalFilesDir(filepath), fileName)
@@ -200,13 +194,10 @@ class MainActivity : AppCompatActivity() {
             val newImage = getResizedBitmap(newPhoto, 256, 192)
             if (newImage != null) {
                 //viewModel.newImage.value = newImage
-                viewModel.decodeBitmapZX(newImage)
+                viewModel.decodeBitmapZX(newImage, contrast = 50)
                 Log.d(TAG, "valid image aquired")
             }
 
-//            if (newImage != null) {
-//
-//            }
 
         }
     }
@@ -216,6 +207,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.imageContrast.observe(this, Observer { contrast ->
 
             Log.d(TAG, "MainActivity $contrast")
+            viewModel.decodeBitmapZX(bart2, contrast)
 
 
         })

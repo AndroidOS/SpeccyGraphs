@@ -8,7 +8,6 @@ import androidx.core.graphics.get
 import androidx.core.graphics.set
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.manuelcarvalho.speccygraphs.utils.contrast
 import com.manuelcarvalho.speccygraphs.utils.formatString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +24,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     val imageArray = MutableLiveData<Array<Array<Int>>>()
     val imageContrast = MutableLiveData<Int>()
 
-    fun decodeBitmapZX(bitmap: Bitmap) {
+    fun decodeBitmapZX(bitmap: Bitmap, contrast: Int) {
         viewModelScope.launch(Dispatchers.IO) {
 
             var contrast2 = contrast * 0.025

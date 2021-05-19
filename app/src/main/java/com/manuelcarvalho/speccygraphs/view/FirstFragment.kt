@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.manuelcarvalho.speccygraphs.R
-import com.manuelcarvalho.speccygraphs.utils.contrast
 import com.manuelcarvalho.speccygraphs.viewmodel.AppViewModel
 
 private const val TAG = "FirstFragment"
@@ -84,7 +83,7 @@ class FirstFragment : Fragment() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                contrast = progressChangedValue
+                //contrast = progressChangedValue
                 viewModel.imageContrast.value = progressChangedValue
                 Log.d(TAG, "$progressChangedValue")
             }
