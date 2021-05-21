@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -26,7 +27,7 @@ class FirstFragment : Fragment() {
     //lateinit var frame: FrameLayout
     private lateinit var imageV: ImageView
     private lateinit var imageSeekBar: SeekBar
-
+    private lateinit var progressBar: ProgressBar
     private lateinit var redoButton: Button
 
     override fun onCreateView(
@@ -42,7 +43,10 @@ class FirstFragment : Fragment() {
 
         imageSeekBar = view.findViewById(R.id.seekBar)
         redoButton = view.findViewById(R.id.redoButton)
+        progressBar = view.findViewById(R.id.progressBar)
+
         imageSeekBar.progress = 50
+        progressBar.visibility = View.GONE
 
         viewModel = activity?.run {
             ViewModelProviders.of(this)[AppViewModel::class.java]
