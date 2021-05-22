@@ -24,7 +24,10 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     val imageArray = MutableLiveData<Array<Array<Int>>>()
     val imageContrast = MutableLiveData<Int>()
 
+    val progress = MutableLiveData<Boolean>()
+
     fun decodeBitmapZX(bitmap: Bitmap, contrast: Int) {
+        progress.value = true
         viewModelScope.launch(Dispatchers.IO) {
 
             var contrast2 = contrast * 0.025
@@ -102,6 +105,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
             viewModelScope.launch(Dispatchers.Main) {
                 newImage.value = bmp
                 imageArray.value = zxArray
+                progress.value = false
             }
 
             Log.d(TAG, "${byteCount}")

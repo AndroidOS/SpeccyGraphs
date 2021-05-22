@@ -80,6 +80,7 @@ class FirstFragment : Fragment() {
             var progressChangedValue = 0
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 progressChangedValue = progress
+                viewModel.progress.value = true
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -105,6 +106,18 @@ class FirstFragment : Fragment() {
         viewModel.newImage.observe(viewLifecycleOwner, Observer { image ->
             image?.let {
                 imageV.setImageBitmap(image)
+
+            }
+        })
+
+        viewModel.progress.observe(viewLifecycleOwner, Observer { isRunning ->
+            isRunning?.let {
+                Log.d(TAG, "progress changed ")
+                if (isRunning) {
+                    progressBar.progress = 50
+                } else {
+                    progressBar.progress = 0
+                }
 
             }
         })
