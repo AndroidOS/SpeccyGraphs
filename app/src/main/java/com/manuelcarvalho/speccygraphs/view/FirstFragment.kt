@@ -47,6 +47,7 @@ class FirstFragment : Fragment() {
 
         imageSeekBar.progress = 50
         progressBar.visibility = View.GONE
+        //progressBar.progress = 0
 
         viewModel = activity?.run {
             ViewModelProviders.of(this)[AppViewModel::class.java]
@@ -81,6 +82,7 @@ class FirstFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 progressChangedValue = progress
                 viewModel.progress.value = true
+                Log.d(TAG, "progress $progress")
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -114,8 +116,10 @@ class FirstFragment : Fragment() {
             isRunning?.let {
                 Log.d(TAG, "progress changed ")
                 if (isRunning) {
+                    progressBar.visibility = View.VISIBLE
                     progressBar.progress = 50
                 } else {
+                    progressBar.visibility = View.GONE
                     progressBar.progress = 0
                 }
 
