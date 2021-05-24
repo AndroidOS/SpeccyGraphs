@@ -30,6 +30,7 @@ class FirstFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var redoButton: Button
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

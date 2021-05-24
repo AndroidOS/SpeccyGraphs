@@ -23,6 +23,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     val imageArray1 = MutableLiveData<ArrayList<ArrayList<Int>>>()
     val imageArray = MutableLiveData<Array<Array<Int>>>()
     val imageContrast = MutableLiveData<Int>()
+    val progressInt = MutableLiveData<Int>()
 
     val progress = MutableLiveData<Boolean>()
 
@@ -53,7 +54,15 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
 
             var strIndex = 0
+            val progressStep = (bitmap.height / 100).toInt()
+            var progressIndex = 0
             for (y in 0..bitmap.height - 1) {
+                progressIndex += progressStep
+                viewModelScope.launch(Dispatchers.Main) {
+
+                    progressInt.value = progressIndex
+                    Log.d(TAG, "ProgressIndex $progressIndex")
+                }
 
                 var bitIndex = 0
                 for (x in 0..bitmap.width - 1) {
@@ -121,7 +130,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
             //Log.d(TAG,"$i ${list[i]}")
         }
         //Log.d(TAG, "${pixArray}")
-        Log.d(TAG, "*******************")
+        //Log.d(TAG, "*******************")
 
         var newByte = 0
 
@@ -173,7 +182,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 }
             }
         }
-        Log.d(TAG, "Lowest ${value}")
+        //Log.d(TAG, "Lowest ${value}")
         return value / 100
     }
 
