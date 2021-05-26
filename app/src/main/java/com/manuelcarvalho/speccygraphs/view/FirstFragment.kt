@@ -113,6 +113,13 @@ class FirstFragment : Fragment() {
             }
         })
 
+        viewModel.progressInt.observe(viewLifecycleOwner, Observer { steps ->
+            steps?.let {
+                progressBar.progress = steps
+
+            }
+        })
+
         viewModel.progress.observe(viewLifecycleOwner, Observer { isRunning ->
             isRunning?.let {
                 Log.d(TAG, "progress changed ")

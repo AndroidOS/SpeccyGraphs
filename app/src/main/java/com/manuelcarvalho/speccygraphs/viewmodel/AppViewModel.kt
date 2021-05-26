@@ -61,7 +61,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 viewModelScope.launch(Dispatchers.Main) {
 
                     progressInt.value = progressIndex
-                    Log.d(TAG, "ProgressIndex $progressIndex")
+                    Log.d(TAG, "ProgressIndex  ${bitmap.height}   $progressIndex $progressStep")
                 }
 
                 var bitIndex = 0
@@ -108,7 +108,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
                 }
 
-                Log.d(TAG, "${formatString}")
+                //Log.d(TAG, "${formatString}")
             }
 
             viewModelScope.launch(Dispatchers.Main) {
