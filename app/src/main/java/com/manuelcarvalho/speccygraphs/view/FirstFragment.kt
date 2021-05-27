@@ -82,8 +82,11 @@ class FirstFragment : Fragment() {
             var progressChangedValue = 0
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 progressChangedValue = progress
-                viewModel.progress.value = true
-                Log.d(TAG, "progress $progress")
+                if (viewModel.inProgress.value == false) {
+                    viewModel.progress.value = true
+                    Log.d(TAG, "progress $progress")
+                }
+
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
