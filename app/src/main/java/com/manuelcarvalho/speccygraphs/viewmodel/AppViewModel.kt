@@ -56,14 +56,15 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
 
             var strIndex = 0
-            val progressStep = (bitmap.height / 100).toInt()
+            val progressStep = (bitmap.height.toFloat() / 120.0).toInt()
+            Log.d(TAG, "ProgressStep $progressStep")
             var progressIndex = 0
             for (y in 0..bitmap.height - 1) {
                 progressIndex += progressStep
                 viewModelScope.launch(Dispatchers.Main) {
 
                     progressInt.value = progressIndex
-                    Log.d(TAG, "ProgressIndex  ${bitmap.height}   $progressIndex $progressStep")
+                    //Log.d(TAG, "ProgressIndex  ${bitmap.height}   $progressIndex $progressStep")
                 }
 
                 var bitIndex = 0
