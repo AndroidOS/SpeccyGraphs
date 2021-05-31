@@ -26,6 +26,7 @@ class FirstFragment : Fragment() {
 
     //lateinit var frame: FrameLayout
     private lateinit var imageV: ImageView
+    private lateinit var newImage: ImageView
     private lateinit var imageSeekBar: SeekBar
     private lateinit var progressBar: ProgressBar
     private lateinit var redoButton: Button
@@ -43,6 +44,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         imageSeekBar = view.findViewById(R.id.seekBar)
+        newImage = view.findViewById(R.id.newImage)
         redoButton = view.findViewById(R.id.redoButton)
         progressBar = view.findViewById(R.id.progressBar)
 
