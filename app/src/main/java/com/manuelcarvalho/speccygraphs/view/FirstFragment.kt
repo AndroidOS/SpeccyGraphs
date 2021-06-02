@@ -118,6 +118,13 @@ class FirstFragment : Fragment() {
             }
         })
 
+        viewModel.reproImage.observe(viewLifecycleOwner, Observer { image ->
+            image?.let {
+                Log.d(TAG, "reproImage changed")
+
+            }
+        })
+
         viewModel.progressInt.observe(viewLifecycleOwner, Observer { steps ->
             steps?.let {
                 progressBar.progress = steps
