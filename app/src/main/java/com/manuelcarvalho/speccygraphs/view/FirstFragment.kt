@@ -121,6 +121,7 @@ class FirstFragment : Fragment() {
         viewModel.reproImage.observe(viewLifecycleOwner, Observer { image ->
             image?.let {
                 Log.d(TAG, "reproImage changed")
+                newImage.setImageBitmap(image)
 
             }
         })
