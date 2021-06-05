@@ -103,6 +103,11 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
+            R.id.action_color -> {
+                Log.d(TAG, "action_color")
+                return true
+            }
+
             R.id.action_camera -> {
                 capturePhoto()
                 return true
