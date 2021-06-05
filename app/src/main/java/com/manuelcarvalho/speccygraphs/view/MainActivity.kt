@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_color -> {
                 Log.d(TAG, "action_color")
+                logColor()
                 return true
             }
 
@@ -217,6 +218,10 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    private fun logColor() {
+        Log.d(TAG, "logColor start")
     }
 
 
